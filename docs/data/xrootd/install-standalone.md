@@ -47,28 +47,11 @@ under `/etc/xrootd/config.d/` as follows:
 
         set rootdir = <DIRECTORY>
 
+    To only serve specific subdirectories of `rootdir` see [this section](#excluding-subdirectories-of-rootdir) for details.
+
     !!! warning
         Do not set `rootdir` to `/`.
         This might result in serving private information.
-
-1.  If you want to limit the sub-directories to serve under your configured `rootdir`,
-    comment out the `all.export /` directive in
-    `/etc/xrootd/config.d/90-osg-standalone-paths.cfg`,
-    and add an `all.export` directive for each directory under `rootdir` that you wish to serve via XRootD.
-    
-    This is useful if you have a mixture of files under your `rootdir`, for example from multiple users,
-    but only want to expose a subset of them to the world.
-    
-    For example, to serve the contents of `/data/store` and `/data/public` (with `rootdir` configured to `/data`):
-
-        all.export /store/
-        all.export /public/
-
-    If you want to serve everything under your configured `rootdir`, you don't have to change anything.
-
-    !!! note
-        The directories specified this way are writable by default.
-        Access controls should be managed via [authorization configuration](#configuring-authorization).
 
 1. In `/etc/xrootd/config.d/10-common-site-local.cfg`, add a line to set the `resourcename` variable to the
    [resource name](/common/registration/#registering-resources) of your XRootD service.
@@ -94,6 +77,26 @@ To configure XRootD authorization please follow the documentation [here](/data/x
 The following configuration steps are optional and will likely not be required for setting up a small site.
 If you do not need any of the following special configurations, skip to
 [the section on using XRootD](#using-xrootd).
+
+#### Excluding subdirectories of `rootdir`
+
+To limit the subdirectories to serve under your configured `rootdir`,
+comment out the `all.export /` directive in `/etc/xrootd/config.d/90-osg-standalone-paths.cfg`,
+and add an `all.export` directive for each directory under `rootdir` that you wish to serve via XRootD.
+
+This is useful if you have a mixture of files under your `rootdir`, for example from multiple users,
+but only want to expose a subset of them to the world.
+
+For example, with `rootdir` configured to `/data` to serve the contents of `/data/store` and `/data/public` but not
+`/data/private`:
+
+    # all.export /
+    all.export /store/
+    all.export /public/
+
+!!! note
+    The directories specified this way are writable by default.
+    Access controls should be managed via [authorization configuration](#configuring-authorization).
 
 #### Enabling Hadoop support (EL 7 Only)
 
