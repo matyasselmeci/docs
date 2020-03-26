@@ -42,14 +42,15 @@ Configuring XRootD
 To configure XRootD as a standalone server, you will modify `/etc/xrootd/xrootd-standalone.cfg` and the config files
 under `/etc/xrootd/config.d/` as follows:
 
-1.  Configure a `rootdir` in `/etc/xrootd/config.d/10-common-site-local.cfg`, to point to the top of the directory
-    hierarchy which you wish to serve via XRootD.
+1.  Set `rootdir` in `/etc/xrootd/config.d/10-common-site-local.cfg`, to point to the directory containing data to serve
+    via XRootD:
 
         set rootdir = <DIRECTORY>
 
+    Replacing `<DIRECTORY>` with the absolute path to the data directory.
     To only serve specific subdirectories of `rootdir` see [this section](#excluding-subdirectories-of-rootdir) for details.
 
-    !!! warning
+    !!! danger
         Do not set `rootdir` to `/`.
         This might result in serving private information.
 
@@ -74,7 +75,7 @@ To configure XRootD authorization please follow the documentation [here](/data/x
 
 ### Optional configuration
 
-The following configuration steps are optional and will likely not be required for setting up a small site.
+The following configuration steps are optional.
 If you do not need any of the following special configurations, skip to
 [the section on using XRootD](#using-xrootd).
 
