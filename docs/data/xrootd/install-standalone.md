@@ -57,7 +57,7 @@ under `/etc/xrootd/config.d/` as follows:
 1. In `/etc/xrootd/config.d/10-common-site-local.cfg`, add a line to set the `resourcename` variable to the
    [resource name](/common/registration/#registering-resources) of your XRootD service.
    For example, the XRootD service registered at the
-   [University of Florida site](https://github.com/opensciencegrid/topology/blob/master/topology/University%20of%20Florida/UF%20HPC/UFlorida-HPC.yaml#L250)
+   [University of Florida site](https://github.com/opensciencegrid/topology/blob/e04a4e60aa732b702ec877cbc2acc786b1a4dc7a/topology/University%20of%20Florida/UF%20HPC/UFlorida-HPC.yaml#L250)
    should set the following configuration:
 
         set resourcename = UFlorida-XRD
