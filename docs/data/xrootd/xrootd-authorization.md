@@ -14,11 +14,12 @@ in the OSG.
     unless you are using the `xrootd-multiuser` plugin.
     Internally, XRootD will verify the permissions and authorization based on the authenticated user.
 
-#### Authorization file
+Authorization file
+------------------
 
 XRootD allows configuring fine-grained file access permissions based on usernames and paths.
 This is configured in the authorization file `/etc/xrootd/auth_file` on the data server node, which should be writable
-only by the xrootd user, optionally readable by others.
+only by the `xrootd` user, optionally readable by others.
 
 (The path `/etc/xrootd/auth_file` corresponds to the
 [`acc.authdb`](http://xrootd.org/doc/dev47/sec_config.htm#_Toc489606592) parameter in your xrootd config.)
@@ -77,8 +78,8 @@ root@host # chown xrootd:xrootd /etc/xrootd/auth_file
 root@host # chmod 0640 /etc/xrootd/auth_file  # or 0644
 ```
 
-
-#### Enabling xrootd-lcmaps authorization
+Enabling XRootD Authorization
+-----------------------------
 
 The xrootd-lcmaps security plugin uses the `lcmaps` library and the [LCMAPS VOMS plugin](/security/lcmaps-voms-authentication)
 to authenticate and authorize users based on X509 certificates and VOMS attributes. Perform the following instructions
