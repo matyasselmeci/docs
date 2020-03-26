@@ -71,7 +71,7 @@ under `/etc/xrootd/config.d/` as follows:
 
 ### Configuring authorization
 
-To configure XRootD authorization please follow the documentation [here](/data/xrootd/xrootd-authorization).
+To configure XRootD authorization please follow the documentation [here](/data/xrootd/xrootd-authorization#enabling-xrootd-authorization).
 
 ### Optional configuration
 

@@ -14,8 +14,20 @@ in the OSG.
     unless you are using the `xrootd-multiuser` plugin.
     Internally, XRootD will verify the permissions and authorization based on the authenticated user.
 
-Authorization file
-------------------
+Enabling XRootD Authorization
+-----------------------------
+
+The `xrootd-lcmaps` security plugin uses the `lcmaps` library and the [LCMAPS VOMS plugin](/security/lcmaps-voms-authentication)
+to authenticate users based on X509 certificates and VOMS attributes.
+Perform the following instructions on all nodes:
+
+1. Configure the [LCMAPS VOMS plugin](/security/lcmaps-voms-authentication)
+   LCMAPS maps an incoming user's grid credentials to a Unix account name;
+   the permissions listed in the [authorization file](#authorization-file) all reference Unix accounts or groups.
+
+1. Configure access rights for mapped users by creating and modifying the XRootD [authorization file](#authorization-file)
+
+### Authorization file
 
 XRootD allows configuring fine-grained file access permissions based on usernames and paths.
 This is configured in the authorization file `/etc/xrootd/auth_file` on the data server node, which should be writable
@@ -78,32 +90,6 @@ root@host # chown xrootd:xrootd /etc/xrootd/auth_file
 root@host # chmod 0640 /etc/xrootd/auth_file  # or 0644
 ```
 
-Enabling XRootD Authorization
------------------------------
-
-The xrootd-lcmaps security plugin uses the `lcmaps` library and the [LCMAPS VOMS plugin](/security/lcmaps-voms-authentication)
-to authenticate and authorize users based on X509 certificates and VOMS attributes. Perform the following instructions
-on all data nodes:
-
-1. Install [CA certificates](/common/ca#installing-ca-certificates) and [manage CRLs](/common/ca#installing-ca-certificates#managing-certificate-revocation-lists)
-
-1. Follow the instructions for requesting a [service certificate](/security/host-certs#requesting-service-certificates),
-   using `xrootd` for both the `<SERVICE>` and `<OWNER>`, resulting in a certificate and key in `/etc/grid-security/xrd/xrdcert.pem`
-   and `/etc/grid-security/xrd/xrdkey.pem`, respectively.
-
-1. Install and configure the [LCMAPS VOMS plugin](/security/lcmaps-voms-authentication)
-   LCMAPS maps an incoming user's grid credentials to a Unix account name;
-   the permissions listed in the [authorization file](#authorization-file) all reference Unix accounts or groups.
-
-1. Install `xrootd-lcmaps` and necessary configuration:
-
-        :::console
-        root@host # yum install xrootd-lcmaps vo-client
-
-1. Configure access rights for mapped users by creating and modifying the XRootD [authorization file](#authorization-file)
-
-1. Restart the [relevant services](/data/xrootd/install-standalone/#using-xrootd)
-
 Verifying XRootD Authorization
 ------------------------------
 
@@ -134,4 +120,3 @@ To verify the LCMAPS security, run the following commands from a machine with yo
         [938.1kB/938.1kB][100%][==================================================][938.1kB/s]
 
     If your transfer does not succeed, run the previous command with `--debug 2` for more information.
-
