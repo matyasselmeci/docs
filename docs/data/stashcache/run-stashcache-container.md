@@ -1,22 +1,30 @@
-Running StashCache Cache in a Container
-=======================================
+Installing the StashCache Cache Using Containers
+================================================
 
-The OSG operates the [StashCache data federation](/data/stashcache/overview), which
-provides organizations with a method to distribute their data in a scalable manner to thousands of jobs without needing
-to pre-stage data across sites or operate their own scalable infrastructure.
+This document describes how to install a StashCache cache service.  This service allows a site or regional
+network to cache data frequently used on the OSG, reducing data transfer over the wide-area network and
+decreasing access latency.
 
-[Stash Caches](/data/stashcache/install-cache) transfer data to clients such as jobs or users. A set of caches are operated across the OSG for the benefit of nearby sites;
-in addition, each site may run its own cache in order to reduce the amount of data transferred over the WAN.
-This document outlines how to run StashCache in a Docker container.
+See [the overview](/data/stashcache/overview) for information about StashCache.
+
+This document describes how to install the cache using containers.
+If you prefer to use RPMs, see the document for [installing the StashCache Cache using RPMs].
+
 
 Before Starting
 ---------------
 
-Before starting the installation process, consider the following points:
+Before starting the installation process, consider the following requirements:
 
-1. **Docker:** For the purpose of this guide, the host must have a running docker service and you must have the ability to start containers (i.e., belong to the `docker` Unix group).
-1. **Network ports:** Stash Cache listens for incoming HTTP/S connections on port 8000 (by default)
-1. **File Systems:** Stash Cache needs a partition on the host to store cached data
+* __Operating system:__ An operating system capable of running containers, such as RHEL 7.
+* __Container runtime:__ For example, Docker.
+  You must have the ability to start containers (e.g. for Docker, belong to the `docker` Unix group).
+* __Network ports:__ The cache service requires the following ports open:
+  * Inbound TCP port 8000 for file access via HTTP/S
+  * Outbound UDP port 9930 for reporting to `xrd-report.osgstorage.org` and `xrd-mon.osgstorage.org` for monitoring
+* __File system:__ Stash Cache needs persistent storage on the host to store cached data;
+  at least 1 TB is recommended.
+* __Hardware requirements:__ In addition to storage, we recommend that a cache has at least 10Gbps connectivity and 8 GB of RAM.
 
 Configuring Stashcache
 ----------------------

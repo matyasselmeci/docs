@@ -1,9 +1,14 @@
-Installing the StashCache Cache
-===============================
+Installing the StashCache Cache Using RPMs
+==========================================
 
 This document describes how to install a StashCache cache service.  This service allows a site or regional
 network to cache data frequently used on the OSG, reducing data transfer over the wide-area network and
 decreasing access latency.
+
+See [the overview](/data/stashcache/overview) for information about StashCache.
+
+This document describes how to install the cache using RPMs.
+If you prefer to use a Docker container, see the document for [installing the StashCache Cache using a container](/data/stashcache/run-stashcache-container).
 
 
 Before Starting
