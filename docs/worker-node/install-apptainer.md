@@ -63,7 +63,7 @@ There are two sets of instructions on this page:
 - [Enabling Unprivileged Apptainer](#enabling-unprivileged-apptainer)
 - [Apptainer via RPM](#apptainer-via-rpm)
 
-OSG VOs all support running apptainer directly from CVMFS when unprivileged
+OSG collaborations all support running apptainer directly from CVMFS when unprivileged
 user namespaces are enabled.
 Unprivileged user namespaces are enabled by default on EL 8, and OSG
 recommends that system administrators enable it on EL 7 worker nodes.
