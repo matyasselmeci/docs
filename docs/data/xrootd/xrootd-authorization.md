@@ -203,6 +203,13 @@ so if you are using the mappings provided in `/usr/share/osg/voms-mapfile-defaul
 (by the `vo-client-lcmaps-voms` package),
 you will have to copy them to `/etc/grid-security/voms-mapfile`.
 
+
+### Banning users or VOs
+
+There is no first class way of banning a user or VO in the current XRootD authorization mechanisms.
+Instead you should map them to an identity that has no privileges.
+
+
 ### Authorization database ###
 
 XRootD allows configuring fine-grained file access permissions based on authenticated identities and paths.
