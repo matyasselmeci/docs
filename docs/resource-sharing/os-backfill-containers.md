@@ -533,6 +533,21 @@ docker run -it --rm --user osg  \
        hub.osg-htc.org/osg-htc/ospool-ep:25-release
 ```
 
+
+Advanced: Selecting OSDF caches
+-------------------------------
+
+Many OSPool jobs download data via the [Open Science Data Federation](../data/osdf/overview.md) (OSDF).
+Such data is typically pulled through regional caches run by OSDF Operations,
+but you may have a preferred cache, or have set up a cache locally at your site.
+
+If you want the jobs running on your OSPool containers to always use a specific cache,
+or try a specific cache first and fall back to one of the regional caches,
+use the following instructions.
+
+
+
+
 Best Practices
 --------------
 
